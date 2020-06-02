@@ -1,0 +1,9 @@
+const email = 'test@test.com';
+const password = 'password';
+export const validCredentials = { email, password };
+export const emailOnlyCredential = { email };
+export const passwordOnlyCredential = { password };
+export const invalidEmailCredentials = { email: 'testEmail', password };
+export const invalidPasswordCredentials = { email, password: 'p' };
+export const wrongEmailCredentials = { email: 'no@no.com', password };
+export const wrongPasswordCredentials = { email, password: '1234567' };
