@@ -1,11 +1,16 @@
 import request from 'supertest';
+import mongoose from 'mongoose';
 import { app } from '../../app';
 import { Ticket } from '../../models';
 import { ordersApiEndpoint, title, price } from '../../test/fixtures';
 
 it('Fetches the order', async () => {
   // Create a ticket
-  const ticket = Ticket.build({ title, price });
+  const ticket = Ticket.build({
+    title,
+    price,
+    _id: mongoose.Types.ObjectId().toHexString(),
+  });
   await ticket.save();
 
   const user = global.signin();
@@ -28,7 +33,11 @@ it('Fetches the order', async () => {
 
 it('Returns an error if one user tries to fetch another users order', async () => {
   // Create a ticket
-  const ticket = Ticket.build({ title, price });
+  const ticket = Ticket.build({
+    title,
+    price,
+    _id: mongoose.Types.ObjectId().toHexString(),
+  });
   await ticket.save();
 
   // Make a request to build an order with this ticket
@@ -45,9 +54,3 @@ it('Returns an error if one user tries to fetch another users order', async () =
     .send()
     .expect(401);
 });
-
-it('', async () => {});
-
-it('', async () => {});
-
-it('', async () => {});
