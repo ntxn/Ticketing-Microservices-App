@@ -1,7 +1,6 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
-import { STRIPE_API_SECRET_KEY } from '../../secret';
 
 declare global {
   namespace NodeJS {
@@ -12,8 +11,6 @@ declare global {
 }
 
 jest.mock('../nats-wrapper');
-
-process.env.STRIPE_KEY = STRIPE_API_SECRET_KEY;
 
 let mongo: any;
 
